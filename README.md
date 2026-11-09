@@ -38,15 +38,28 @@ Citizen-Identity-Management-System/
 ├── main.py
 ├── citizens.json
 ├── README.md
-└── .gitignore
+├── .gitignore
+│
+└── Output_Screenshots/
+    ├── Citizen_List.png
+    └── Identity_Menu.png
 ```
 
-## How to Run
+## How to Run the Project
 
-1. Download or clone this repository.
-2. Open the project folder in VS Code.
-3. Open the terminal.
-4. Run the following command:
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/JS-JUNAIDSALEEM/Citizen-Identity-Management-System.git
+```
+
+**2. Open the project folder**
+
+```bash
+cd Citizen-Identity-Management-System
+```
+
+**3. Run the application**
 
 ```bash
 python main.py
