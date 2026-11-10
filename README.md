@@ -4,19 +4,21 @@
 
 This is one of my first Python projects, which I created when I started learning Python.
 
-The project is a simple Citizen Identity Management System. It works like a basic NADRA system where a citizen can log in using a CNIC number and view or update their information.
+The project is a simple Citizen Identity Management System. It works like a basic NADRA system where a citizen can log in using a CNIC number and a 4-digit PIN to view or update their information.
 
 It uses a Python dictionary to store citizen data and a JSON file to save updated information.
 
 ## Features
 
-- Login using CNIC number
-- Show available CNIC numbers before login
+- Login using CNIC number and PIN
 - Check CNIC format
+- Verify citizen PIN before login
 - View citizen identity profile
 - Update home address
-- Save updated address in a JSON file
+- Remove extra spaces from the updated address
+- Save updated information in a JSON file
 - Check CNIC status
+- Validate citizen data loaded from JSON
 - Logout from the current citizen
 - Exit the complete system
 
@@ -29,6 +31,7 @@ It uses a Python dictionary to store citizen data and a JSON file to save update
 - Functions
 - JSON
 - File Handling
+- unittest
 
 ## Project Structure
 
@@ -36,14 +39,17 @@ It uses a Python dictionary to store citizen data and a JSON file to save update
 Citizen-Identity-Management-System/
 │
 ├── main.py
-├── citizens.json
 ├── README.md
 ├── .gitignore
 │
-└── Output_Screenshots/
-    ├── Citizen_List.png
+├── tests/
+│   └── test_main.py
+│
+└── output/
     └── Identity_Menu.png
 ```
+
+**Note:** `citizens.json` is created locally when a citizen's address is updated. It is excluded from GitHub through `.gitignore`, so it is not included in the repository.
 
 ## How to Run the Project
 
@@ -67,7 +73,9 @@ python main.py
 
 ## How It Works
 
-First, the system shows the available CNIC numbers. The user enters a CNIC number to log in.
+First, the user enters their CNIC number. The system checks the CNIC format and verifies whether the CNIC exists in the database.
+
+After entering the correct CNIC, the user must enter a 4-digit PIN to log in.
 
 After successful login, a menu appears with different options:
 
@@ -77,7 +85,41 @@ After successful login, a menu appears with different options:
 4. Logout from Citizen
 5. Exit System
 
-When the address is updated, the new information is saved in a JSON file. If the user logs out, they can log in again using another citizen's CNIC.
+When the address is updated, the system removes unnecessary spaces and saves the new information in a JSON file.
+
+If the user logs out, they can log in again using another citizen's CNIC and PIN.
+
+The system also checks the structure of saved JSON data before loading it.
+
+## How to Run Tests
+
+This project uses Python's built-in `unittest` module to test important functions.
+
+**Run the tests using this command:**
+
+```bash
+py -m unittest tests/test_main.py -v
+```
+
+The tests check:
+
+- Valid and invalid CNIC formats
+- Valid citizen data
+- Missing citizen information
+- Invalid PIN format
+- Saving and loading citizen data
+- Handling invalid JSON files
+
+No external testing library is required.
+
+## Demo Login
+
+You can use the following sample account to test the system:
+
+- **CNIC:** `35201-1234567-1`
+- **PIN:** `1234`
+
+Other sample citizen records and PINs are available in `main.py`.
 
 ## What I Learned
 
@@ -89,18 +131,22 @@ While making this project, I practiced:
 - Creating and using functions
 - Reading and writing JSON files
 - Updating dictionary data
-- Working with nested loops
+- Validating user input and citizen data
+- Writing simple automated tests
+- Using the main function and main guard
 
 ## Future Improvements
 
-- Add a PIN or password for login.
 - Add an option to register new citizens.
 - Add an option to delete citizen records.
+- Improve PIN security.
 - Improve input validation.
 
 ## Note
 
 This is only a practice project made for learning Python. It is not connected to the real NADRA database and uses sample citizen information.
+
+The PINs are stored as plain text for practice purposes. This system is not suitable for storing real citizen information.
 
 ## Author
 
